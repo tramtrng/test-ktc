@@ -1,0 +1,44 @@
+package com.example.spring_project.service;
+
+import com.example.spring_project.entities.Employee;
+import com.example.spring_project.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+@Service
+public class EmployeeService {
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
+
+    public Optional<Employee> getEmployeeById(Long id) {
+        return employeeRepository.findById(id);
+    }
+
+    public Employee saveEmployee(Employee employee) {
+        // Hash password trước khi lưu
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    employee.setHashedPassword(encoder.encode(employee.getHashedPassword()));
+        return employeeRepository.save(employee);
+    }
+
+    public Employee updateEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public void deleteEmployee(Long id) {
+        employeeRepository.deleteById(id);
+    }
+
+    public boolean existsByEmail(String email) {
+        return employeeRepository.existsByEmail(email);
+    }
+}
