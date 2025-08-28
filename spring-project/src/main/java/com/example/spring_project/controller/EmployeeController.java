@@ -7,6 +7,8 @@ import com.example.spring_project.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +35,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody EmployeeCreateRequest request) {
+    public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody @Valid EmployeeCreateRequest request) {
         Employee employee = new Employee();
     employee.setFullName(request.getFullName());
         employee.setEmail(request.getEmail());

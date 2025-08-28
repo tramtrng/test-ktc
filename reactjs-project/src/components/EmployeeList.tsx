@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Table, Button, Modal, Form, Input, Select, DatePicker, Switch, Space, message, Popconfirm } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
-import { employeeService } from '../services/employeeService';
+import { employeeService } from '../services/api-employee';
 import type { Employee, CreateEmployeeRequest, UpdateEmployeeRequest } from '../types/Employee';
 
 const { Option } = Select;
